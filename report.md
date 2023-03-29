@@ -86,7 +86,7 @@ for every row in C do
 ## 2. General Parallelization Strategy
 To parallelize this computation, I plan to distribute the rows among "nodes", whether that be threads accessing shared memory, or threads communicating by passing messages.
 
-![Diagram](./diagram%201.png)
+![Diagram](./images/diagram%201.png)
 
 This is the ___ approach.
 
@@ -236,7 +236,7 @@ Average | 2514869.6
 
 # V - Method Comparison
 
-![Graph](./graph1.png)  
+![Graph](./images/graph1.png)  
 In addition to our calculated metrics, by plotting the elapsed time taken by each implementation to complete multiplying the matrices, we can  gain a lot of insight on each algorithm.
 
 ## Raw Speed & Speedup Factor
@@ -248,7 +248,7 @@ We have already calculated the efficiency of the OpenMP implementation and the M
 
 OpenMP has an efficiency of $E = 1.015354$ while Multithreading has an efficiency of $E = 0.406385$
 
-![Graph of Efficiency](./graph2.png)
+![Graph of Efficiency](./images/graph2.png)
 
 We can see that OpenMP is $2.4985 \approx 2.5$ times more efficient than manual multithreading.
 
