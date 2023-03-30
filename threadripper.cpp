@@ -4,16 +4,16 @@
 #include <chrono>
 #include <fstream>
 
+using std::cout;
 using std::vector, std::thread, std::ofstream;
-using std::cout; 
 
-constexpr char nl{ '\n' };
+constexpr char nl{'\n'};
 
 int num_of_threads = 8;
 
-constexpr int a{ 1000 };
-constexpr int b{ 1000 };
-constexpr int c{ 1000 };
+constexpr int a{1000};  
+constexpr int b{1000};
+constexpr int c{1000};
 
 vector<vector<int>> m1(a, vector<int>(b));
 vector<vector<int>> m2(b, vector<int>(c));
@@ -38,54 +38,65 @@ void multiply(int tid)
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    // initialize the matrices with random values
-    for (int i = 0; i < a; i++)
+
+    if (argc != 2)
     {
-        for (int j = 0; j < b; j++)
+        cout << "Incorrect Usage." << nl << "Correct Usage: ./threadripper <number_of_threads: int>" << nl;
+    }
+    else
+    {
+        num_of_threads = atoi(argv[1]);
+        
+        // initialize the matrices with random values
+        for (int i = 0; i < a; i++)
         {
-            m1[i][j] = i + j;
+            for (int j = 0; j < b; j++)
+            {
+                m1[i][j] = i + j;
+            }
         }
-    }
-    
-    for (int i = 0; i < b; i++)
-    {
-        for (int j = 0; j < c; j++)
+
+        for (int i = 0; i < b; i++)
         {
-            m2[i][j] = i - j;
+            for (int j = 0; j < c; j++)
+            {
+                m2[i][j] = i - j;
+            }
         }
-    }
 
-    // start timer
-    auto start = std::chrono::high_resolution_clock::now();
+        // start timer
+        auto start = std::chrono::high_resolution_clock::now();
 
-    // Create and start the threads
-    vector<thread> threads;
-    for (int i = 0; i < num_of_threads; i++)
-    {
-        threads.push_back(thread(multiply, i));
-    }
-
-    // wait for thrads to finish
-    for (auto &thread : threads)
-    {
-        thread.join();
-    }
-
-    // end timer and calculate duration
-    auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    std::cout << "Calculation done in " << duration.count()<< " microseconds\n";
-
-    // output the result to a file
-    ofstream outfile("outputth.txt");
-    for (int i = 0; i < a; i++)
-    {
-        for (int j = 0; j < c; j++) {
-            outfile << mr[i][j] << " ";
+        // Create and start the threads
+        vector<thread> threads;
+        for (int i = 0; i < num_of_threads; i++)
+        {
+            threads.push_back(thread(multiply, i));
         }
-        outfile << nl;
+
+        // wait for thrads to finish
+        for (auto &thread : threads)
+        {
+            thread.join();
+        }
+
+        // end timer and calculate duration
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        std::cout << "Calculation done in " << duration.count() << " microseconds\n";
+
+        // output the result to a file
+        ofstream outfile("outputth.txt");
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < c; j++)
+            {
+                outfile << mr[i][j] << " ";
+            }
+            outfile << nl;
+        }
     }
 
     return 0;

@@ -28,12 +28,15 @@ Due : 31 / 04 / 2023
   - [2. OpenMP Implementation](#2-openmp-implementation)
     - [a. Speedup Factor](#a-speedup-factor)
     - [b. Efficiency](#b-efficiency)
+    - [c. Scalability](#c-scalability)
   - [3. Multithreading Implementation](#3-multithreading-implementation)
     - [a. Speedup Factor](#a-speedup-factor-1)
     - [b. Efficiency](#b-efficiency-1)
+    - [c. Scalability](#c-scalability-1)
 - [V - Method Comparison](#v---method-comparison)
   - [Raw Speed \& Speedup Factor](#raw-speed--speedup-factor)
   - [Efficiency](#efficiency)
+  - [Scalability](#scalability)
   - [Consistency](#consistency)
 - [VI - Discussion \& Conclusion](#vi---discussion--conclusion)
 
@@ -205,6 +208,14 @@ Average | 1006551.8
 > In this case, $S(p)=8.122830$ and $p = 8$  
 > So $E = 1.015354$  
 
+### c. Scalability
+> Detailed information about runs and how graphs were made can be found in this [spreadsheet](https://docs.google.com/spreadsheets/d/1uapGegDi8LtIh6D2wkXR_9pO6y5jBO1hFwivQwpMMiY/edit?usp=sharing)  
+
+![Graph of Time vs Number of Threads](images/OpenMP_%20Time%20(microseconds)%20vs.%20Number%20of%20Threads.png)
+![Graph for Scalability for OpenMP](images/OpenMP%20Scalability_%20Speedup%20vs.%20Number%20of%20Threads.png)
+
+We can notice the speed up factor generally increases as the number of threads increases. However, we notice this increase plateau around 8 threads.
+
 ## 3. Multithreading Implementation
 Run # | Time (microseconds)
 --- | ---
@@ -234,6 +245,14 @@ Average | 2514869.6
 > In this case, $S(p)=3.251083$ and $p = 8$  
 > So $E = 0.406385$  
 
+### c. Scalability
+> Detailed information about runs and how graphs were made can be found in this [spreadsheet](https://docs.google.com/spreadsheets/d/1uapGegDi8LtIh6D2wkXR_9pO6y5jBO1hFwivQwpMMiY/edit?usp=sharing)  
+
+![Graph of Time vs Threads](images/Multithreading_%20Time%20(microseconds)%20vs.%20Number%20of%20Threads.png)
+![Graph for Scalability for Multithreading](images/Multithreading%20Scalability_%20Speedup%20S(p)%20vs.%20Number%20of%20Threads.png)  
+
+We notice graphically, that speedup increases as the number of threads increases. However, this increase starts to plateau around 6 threads, though it does not become stable until around 8 threads.
+
 # V - Method Comparison
 
 ![Graph](./images/graph1.png)  
@@ -251,6 +270,9 @@ OpenMP has an efficiency of $E = 1.015354$ while Multithreading has an efficienc
 ![Graph of Efficiency](./images/graph2.png)
 
 We can see that OpenMP is $2.4985 \approx 2.5$ times more efficient than manual multithreading.
+
+## Scalability
+We observed in section IV when measuring scalability, that both parallel implementations scale similarly with the number of threads, as both of them stabalize at 8 threads
 
 ## Consistency
 We notice that the sequential algorithm has the highest variance in its values, which means it's the least consistent algorithm out of the 3.  
