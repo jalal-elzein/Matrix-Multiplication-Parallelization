@@ -91,8 +91,6 @@ To parallelize this computation, I plan to distribute the rows among "nodes", wh
 
 ![Diagram](./images/diagram%201.png)
 
-This is the ___ approach.
-
 ## 3. Parallelization using Multithreading
 For multithreading, I will be distrubuting the rows of the result matrix statically and evenly based on the total number of rows and number of available threads.
 
@@ -113,7 +111,7 @@ The outputs of the programs are written to textfiles that would be created in th
 
 Instructions/Commands for compiling each program is included as a comment in the last 2 lines of every source file.
 
-You can find the code on [Github](...)
+You can find the code on [Github](https://github.com/jalal-elzein/Matrix-Multiplication-Parallelization/)
 
 # IV - Performance Evaluation
 
