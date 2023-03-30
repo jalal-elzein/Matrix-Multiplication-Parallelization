@@ -8,7 +8,6 @@ File Name | Description
 openmp.cpp | OpenMP Implementation of Matrix Multiplication
 README.md | you're reading it :p 
 report.md | Markdown source of my final report
-Report.pdf | My final submission to my instructor
 sequential.cpp | Sequential Implementation of Matrix Multiplication
 threadripper.cpp | Manual Multithreading Implementation of Matrix Multiplication
 
